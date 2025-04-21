@@ -1,0 +1,17 @@
+{
+  "name": "ethers-asset-hub",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@parity/revive": "^0.0.8",
+    "@polkadot/api": "^15.9.2",
+    "ethers": "^6.13.5"
+  }
+}
