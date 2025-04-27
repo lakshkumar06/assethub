@@ -87,6 +87,11 @@
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "_githubLink",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "_requiredFunding",
         "type": "uint256"
@@ -118,6 +123,11 @@
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "githubLink",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "requiredFunding",
         "type": "uint256"
@@ -136,6 +146,11 @@
         "internalType": "bool",
         "name": "isActive",
         "type": "bool"
+      },
+      {
+        "internalType": "address[]",
+        "name": "projectInvestors",
+        "type": "address[]"
       }
     ],
     "stateMutability": "view",
@@ -172,6 +187,11 @@
       {
         "internalType": "string",
         "name": "role",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "telegram",
         "type": "string"
       },
       {
@@ -241,6 +261,11 @@
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "githubLink",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "requiredFunding",
         "type": "uint256"
@@ -275,6 +300,11 @@
         "internalType": "string",
         "name": "_role",
         "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_telegram",
+        "type": "string"
       }
     ],
     "name": "registerUser",
@@ -300,6 +330,11 @@
       {
         "internalType": "string",
         "name": "role",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "telegram",
         "type": "string"
       },
       {

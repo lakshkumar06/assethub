@@ -5,6 +5,7 @@ const Auth = ({ contract, account, provider, signer, onAuthComplete }) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
+  const [telegram, setTelegram] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,13 +18,13 @@ const Auth = ({ contract, account, provider, signer, onAuthComplete }) => {
       if (isRegistering) {
         // Register new user
         const contractWithSigner = contract.connect(signer);
-        const tx = await contractWithSigner.registerUser(name, role);
+        const tx = await contractWithSigner.registerUser(name, role, telegram);
         await tx.wait();
         onAuthComplete();
       } else {
         // Login existing user
         try {
-          const [userName, userRole, exists] = await contract.getUserInfo(account);
+          const [userName, userRole, userTelegram, exists] = await contract.getUserInfo(account);
           if (!exists) {
             setError('User not found. Please register first.');
             setIsRegistering(true);
@@ -77,6 +78,15 @@ const Auth = ({ contract, account, provider, signer, onAuthComplete }) => {
               <option value="investor">Investor</option>
               <option value="founder">Founder</option>
             </select>
+            <input
+              type="text"
+              placeholder="Telegram Username (@username)"
+              value={telegram}
+              onChange={(e) => setTelegram(e.target.value)}
+              style={styles.input}
+              required
+              disabled={isLoading}
+            />
           </>
         )}
         

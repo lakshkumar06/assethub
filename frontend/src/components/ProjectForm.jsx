@@ -5,6 +5,7 @@ function ProjectForm({ contract, account, provider }) {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
+    githubLink: '',
     requiredFunding: ''
   });
 
@@ -20,6 +21,7 @@ function ProjectForm({ contract, account, provider }) {
       const tx = await contractWithSigner.createProject(
         formData.name,
         formData.description,
+        formData.githubLink,
         ethers.parseEther(formData.requiredFunding)
       );
       
@@ -33,6 +35,7 @@ function ProjectForm({ contract, account, provider }) {
       setFormData({
         name: '',
         description: '',
+        githubLink: '',
         requiredFunding: ''
       });
       
@@ -51,92 +54,69 @@ function ProjectForm({ contract, account, provider }) {
   };
 
   return (
-    <div style={formContainerStyle}>
-      <h2>Create New Project</h2>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <div style={inputGroupStyle}>
-          <label>Project Name:</label>
+    <div className="bg-white rounded-lg shadow p-6">
+      <h2 className="text-2xl font-semibold mb-6">Create New Project</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
-            style={inputStyle}
           />
         </div>
         
-        <div style={inputGroupStyle}>
-          <label>Description:</label>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows="4"
             required
-            style={textareaStyle}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">GitHub Repository Link</label>
+          <input
+            type="url"
+            name="githubLink"
+            value={formData.githubLink}
+            onChange={handleChange}
+            placeholder="https://github.com/username/repository"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
           />
         </div>
         
-        <div style={inputGroupStyle}>
-          <label>Required Funding (ETH):</label>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Required Funding (WND)</label>
           <input
             type="number"
             name="requiredFunding"
             value={formData.requiredFunding}
             onChange={handleChange}
-            required
-            step="0.01"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            step="0.000000000000000001"
             min="0"
-            style={inputStyle}
+            required
           />
         </div>
         
-        <button type="submit" style={buttonStyle}>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
           Create Project
         </button>
       </form>
     </div>
   );
 }
-
-const formContainerStyle = {
-  marginBottom: '40px',
-  padding: '20px',
-  border: '1px solid #ddd',
-  borderRadius: '8px',
-};
-
-const formStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '15px',
-};
-
-const inputGroupStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '5px',
-};
-
-const inputStyle = {
-  padding: '8px',
-  borderRadius: '4px',
-  border: '1px solid #ddd',
-};
-
-const textareaStyle = {
-  ...inputStyle,
-  minHeight: '100px',
-  resize: 'vertical',
-};
-
-const buttonStyle = {
-  padding: '10px 20px',
-  backgroundColor: '#4CAF50',
-  color: 'white',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-};
 
 export default ProjectForm; 
